@@ -2,6 +2,7 @@
 
 import React, { useState, use } from 'react';
 import Link from 'next/link';
+import Navbar from '../../components/Navbar';
 import { notFound } from 'next/navigation';
 
 const destinationsData = [
@@ -14,7 +15,7 @@ const destinationsData = [
     flight: "Yerevan - Larnaca (Direct RT)",
     hotel: "Luxury Villa (shoulder season)",
     activity: "Zenobia Wreck Dive",
-    image: "https://picsum.photos/seed/cyprus/1920/1080",
+    image: "/country/cyprus.jpg",
     desc: "Experience world-class nightlife in Ayia Napa combined with an iconic wreck dive at the Zenobia site.",
     itinerary3: [
       { day: "Day 1", desc: "Arrival, Nissi Beach, Ocean Basket dinner, boat party" },
@@ -40,7 +41,7 @@ const destinationsData = [
     flight: "Direct Flight (RT)",
     hotel: "Beachside Hotel",
     activity: "DGV Club + Armenian Church Day",
-    image: "https://picsum.photos/seed/bulgaria/1920/1080",
+    image: "/country/sunny beach bulgaria.png",
     desc: "High-energy beach parties on the Black Sea coast paired with rich local cultural experiences.",
     itinerary3: [
       { day: "Day 1", desc: "Arrival, check-in, relax, welcome dinner" },
@@ -66,7 +67,7 @@ const destinationsData = [
     flight: "Direct Flight (RT)",
     hotel: "Coastal Apartment / Hotel",
     activity: "Tara Canyon + Monte 1350 Sunset",
-    image: "https://picsum.photos/seed/montenegro/1920/1080",
+    image: "/country/budva montenegro.png",
     desc: "Dramatic fjord-like Adriatic landscapes, ancient Old Towns, and mountain canyon adventures.",
     itinerary3: [
       { day: "Day 1", desc: "Arrival, relax, Torch Beach Club, Budva Old Town evening" },
@@ -92,7 +93,7 @@ const destinationsData = [
     flight: "Direct Flight (RT)",
     hotel: "Resort Hotel",
     activity: "BCM Planet Dance Superclub",
-    image: "https://picsum.photos/seed/spain/1920/1080",
+    image: "/country/magaluf spain.png",
     desc: "The undisputed capital of European summer clubbing with crystal-clear Balearic beaches.",
     itinerary3: [
       { day: "Day 1", desc: "Arrival, Magaluf Beach, Restaurante El Mundo dinner, Punta Ballena bar crawl" },
@@ -118,7 +119,7 @@ const destinationsData = [
     flight: "Direct Flight (RT)",
     hotel: "Crete Seaside Hotel",
     activity: "Malia Booze Cruise + Apollo Club",
-    image: "https://picsum.photos/seed/greece/1920/1080",
+    image: "/country/greece.jpg",
     desc: "Unforgettable island party boat cruises meets ancient Greek history and vibrant nightlife.",
     itinerary3: [
       { day: "Day 1", desc: "Arrival, transfer, check-in, relax, Old Malia tavernas dinner" },
@@ -144,7 +145,7 @@ const destinationsData = [
     flight: "Direct Flight (RT)",
     hotel: "Central City Hotel",
     activity: "Sparty at Szechenyi Thermal Baths",
-    image: "https://picsum.photos/seed/budapest/1920/1080",
+    image: "/country/budapest.png",
     desc: "The ultimate ruin bar crawls and night-time thermal bath parties in Europe's most cinematic city.",
     itinerary3: [
       { day: "Day 1", desc: "Arrival, check-in, relax, Szimpla Kert" },
@@ -170,7 +171,7 @@ const destinationsData = [
     flight: "Direct Flight (RT)",
     hotel: "Boutique Canal Hotel",
     activity: "A'DAM Lookout Swing + Van Gogh Museum",
-    image: "https://picsum.photos/seed/amsterdam/1920/1080",
+    image: "/country/amsterdam.jpg",
     desc: "Canal cruises, world-class art galleries, and thrilling edge-of-the-building swings.",
     itinerary3: [
       { day: "Day 1", desc: "Arrival, relax, Fabel Friet, Pizza & Booze Cruise" },
@@ -196,7 +197,7 @@ const destinationsData = [
     flight: "Direct Flight (RT)",
     hotel: "Riviera Beach Resort",
     activity: "Orange Club + Sunset Boat Party",
-    image: "https://picsum.photos/seed/albania/1920/1080",
+    image: "/country/saranda albania.png",
     desc: "The hidden paradise of the Ionian Riviera with turquoise waters and wild boat bashes.",
     itinerary3: [
       { day: "Day 1", desc: "Full travel day: flight to Tirana, 4.5hr transfer, check-in, light promenade evening" },
@@ -222,7 +223,7 @@ const destinationsData = [
     flight: "Direct Flight (RT)",
     hotel: "Historic Center Hotel",
     activity: "AK-47 Shooting Range + Karlovy Lazne",
-    image: "https://picsum.photos/seed/prague/1920/1080",
+    image: "/country/Prague.png",
     desc: "Gothic fairytale streets, adrenaline shooting experiences, and 5-story mega clubs.",
     itinerary3: [
       { day: "Day 1", desc: "Arrival, Old Town walk: Charles Bridge, Astronomical Clock, Old Town Square" },
@@ -256,19 +257,7 @@ export default function CountryPage({ params }: { params: Promise<{ country: str
   return (
     <main className="min-h-screen bg-slate-50 text-slate-900 font-sans selection:bg-yellow-400 selection:text-black">
       {/* Стеклянный Navbar */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/70 backdrop-blur-xl border-b border-white/40 px-6 py-4 flex justify-between items-center shadow-sm">
-        <Link href="/" className="text-xl font-extrabold tracking-wider text-slate-900">
-          WYLD <span className="text-yellow-500">MILE</span>
-        </Link>
-        <a 
-          href="https://t.me/wyldmile" 
-          target="_blank"
-          rel="noopener noreferrer"
-          className="bg-slate-900 text-white font-bold text-sm px-6 py-2.5 rounded-full hover:bg-slate-800 transition-all shadow-md"
-        >
-          Book Trip
-        </a>
-      </nav>
+      <Navbar />
 
       {/* Hero Header с градиентом */}
       <section className="relative h-[70vh] w-full flex flex-col items-center justify-center overflow-hidden pt-16 rounded-b-[3rem] shadow-sm">

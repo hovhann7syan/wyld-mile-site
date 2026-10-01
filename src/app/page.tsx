@@ -1,5 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
+import TypingText from '../components/TypingText';
+import Navbar from '../components/Navbar';
 
 const destinations = [
   {
@@ -8,7 +10,8 @@ const destinations = [
     city: "Ayia Napa",
     price3: "$493",
     badge: "Bestseller",
-    image: "https://picsum.photos/seed/cyprus/1000/600"
+    // Обращаемся к папке public/country/
+    image: "/country/cyprus.jpg" 
   },
   {
     slug: "bulgaria",
@@ -16,7 +19,7 @@ const destinations = [
     city: "Sunny Beach",
     price3: "$289",
     badge: "Popular",
-    image: "https://picsum.photos/seed/bulgaria/1000/600"
+    image: "/country/sunny beach bulgaria.png"
   },
   {
     slug: "montenegro",
@@ -24,7 +27,7 @@ const destinations = [
     city: "Budva",
     price3: "$391",
     badge: "Trending",
-    image: "https://picsum.photos/seed/montenegro/1000/600"
+    image: "/country/budva montenegro.png"
   },
   {
     slug: "spain",
@@ -32,7 +35,7 @@ const destinations = [
     city: "Magaluf",
     price3: "$413",
     badge: "Bestseller",
-    image: "https://picsum.photos/seed/spain/1000/600"
+    image: "/country/magaluf spain.png"
   },
   {
     slug: "greece",
@@ -40,7 +43,7 @@ const destinations = [
     city: "Malia",
     price3: "$530",
     badge: "Popular",
-    image: "https://picsum.photos/seed/greece/1000/600"
+    image: "/country/greece.jpg"
   },
   {
     slug: "budapest",
@@ -48,7 +51,7 @@ const destinations = [
     city: "Budapest",
     price3: "$431",
     badge: "Trending",
-    image: "https://picsum.photos/seed/budapest/1000/600"
+    image: "/country/budapest.png"
   },
   {
     slug: "amsterdam",
@@ -56,7 +59,7 @@ const destinations = [
     city: "Amsterdam",
     price3: "$538",
     badge: "Bestseller",
-    image: "https://picsum.photos/seed/amsterdam/1000/600"
+    image: "/country/amsterdam.jpg"
   },
   {
     slug: "albania",
@@ -64,7 +67,7 @@ const destinations = [
     city: "Saranda",
     price3: "$615",
     badge: "Popular",
-    image: "https://picsum.photos/seed/albania/1000/600"
+    image: "/country/saranda albania.png"
   },
   {
     slug: "prague",
@@ -72,14 +75,19 @@ const destinations = [
     city: "Prague",
     price3: "$543",
     badge: "Trending",
-    image: "https://picsum.photos/seed/prague/1000/600"
+    // Обрати внимание на заглавную P, как у тебя в названии файла
+    image: "/country/Prague.png" 
   }
 ];
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-slate-50 text-slate-900 font-sans selection:bg-yellow-400 selection:text-black scroll-smooth">
-      {/* HERO SECTION */}
+    <main className="min-h-screen bg-slate-50 text-slate-900 selection:bg-yellow-400 selection:text-black scroll-smooth">
+      
+      {/* СУПЕР-СОВРЕМЕННЫЙ УМНЫЙ NAVBAR */}
+      <Navbar />
+
+      {/* HERO SECTION (ЧИСТОЕ ВИДЕО НА ВЕСЬ ЭКРАН) */}
       <section className="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden">
         <video 
           autoPlay 
@@ -93,16 +101,13 @@ export default function Home() {
         
         <div className="absolute inset-0 bg-black/40 z-10 backdrop-blur-[2px]"></div>
 
-        <div className="relative z-20 text-center px-4 flex flex-col items-center">
+        <div className="relative z-20 text-center px-4 flex flex-col items-center mt-12">
           <div className="bg-white/10 backdrop-blur-md border border-white/20 px-6 py-2 rounded-full mb-8 shadow-2xl">
             <h4 className="text-white tracking-[0.3em] text-xs font-semibold uppercase">
               Independent Travel Atelier
             </h4>
           </div>
-          <h1 className="text-6xl md:text-8xl lg:text-9xl font-extrabold text-white tracking-tight leading-[0.9] mb-8 drop-shadow-2xl">
-            GO WYLD.<br />
-            BE FREE.
-          </h1>
+          <TypingText />
           <p className="text-white/90 max-w-xl mx-auto text-lg md:text-xl mb-10 font-medium drop-shadow-md">
             Hand-crafted routes. No mass tourism, just your rhythm and wild places.
           </p>
@@ -140,15 +145,12 @@ export default function Home() {
                     alt={tour.country} 
                     className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
                   />
-                  {/* Мягкий градиент для читаемости текста */}
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent"></div>
                   
-                  {/* Стеклянный бейдж */}
                   <div className="absolute top-4 left-4 bg-white/20 backdrop-blur-md border border-white/30 text-white px-4 py-1.5 rounded-full text-xs font-bold shadow-sm">
                     {tour.badge}
                   </div>
 
-                  {/* Текстовый контент */}
                   <div className="absolute bottom-0 left-0 right-0 p-6 flex justify-between items-end">
                     <div className="text-white">
                       <h3 className="text-3xl font-extrabold mb-1 tracking-tight">{tour.country}</h3>
@@ -176,14 +178,11 @@ export default function Home() {
       {/* APPLE-STYLE GLASSMORPHISM FOOTER */}
       <footer id="contact" className="relative w-full pb-12 pt-8 overflow-hidden bg-slate-50">
         
-        {/* Декоративные фоновые элементы для эффекта стекла (Blur Orbs) */}
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-200/40 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob"></div>
         <div className="absolute top-0 right-1/4 w-96 h-96 bg-purple-200/40 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000"></div>
         <div className="absolute -bottom-32 left-1/2 w-96 h-96 bg-yellow-200/40 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-4000"></div>
 
         <div className="max-w-7xl mx-auto px-4 relative z-10">
-          
-          {/* Стеклянный контейнер */}
           <div className="bg-white/60 backdrop-blur-2xl border border-white/50 shadow-2xl shadow-slate-200/50 rounded-[3rem] p-8 md:p-16">
             
             <div className="text-center max-w-2xl mx-auto mb-16">
@@ -198,9 +197,7 @@ export default function Home() {
               </p>
             </div>
 
-            {/* Сетка контактов */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              
               {/* Telegram */}
               <a href="https://t.me/wyldmile" target="_blank" rel="noopener noreferrer" 
                 className="group relative bg-white/50 hover:bg-white/80 backdrop-blur-lg border border-white/60 rounded-3xl p-6 transition-all duration-300 shadow-sm hover:shadow-xl hover:-translate-y-1 flex flex-col items-center text-center">
@@ -242,10 +239,9 @@ export default function Home() {
               </a>
             </div>
 
-            {/* Bottom copyright line */}
             <div className="mt-16 pt-8 border-t border-slate-200/50 flex flex-col md:flex-row justify-between items-center text-slate-500 text-sm font-medium">
               <div className="flex items-center space-x-2 mb-4 md:mb-0">
-                <span className="font-extrabold text-slate-900 tracking-widest">WYLD MILE</span>
+                <img src="/logo.png" alt="WYLD MILE" className="h-6 w-auto grayscale opacity-80" />
                 <span>—</span>
                 <span>Independent Travel Atelier</span>
               </div>
