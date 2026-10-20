@@ -46,9 +46,14 @@ export default function Navbar({ alwaysDarkText = false }: NavbarProps) {
       </Link>
       
       {/* Ссылки меню */}
+      {/* Ссылки меню */}
       <div className="hidden md:flex items-center space-x-8">
         <Link href="/#destinations" className={`text-sm font-semibold transition-all hover:scale-105 ${useDark ? 'text-slate-600 hover:text-slate-900' : 'text-white/90 hover:text-white'}`}>
           Destinations
+        </Link>
+        {/* НОВАЯ ССЫЛКА НА АРМЕНИЮ */}
+        <Link href="/armenia" className={`text-sm font-semibold transition-all hover:scale-105 ${useDark ? 'text-slate-600 hover:text-slate-900' : 'text-white/90 hover:text-white'}`}>
+          Armenia
         </Link>
         <Link href="/blog" className={`text-sm font-semibold transition-all hover:scale-105 ${useDark ? 'text-slate-600 hover:text-slate-900' : 'text-white/90 hover:text-white'}`}>
           Blog

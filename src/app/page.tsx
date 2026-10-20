@@ -4,79 +4,98 @@ import TypingText from '../components/TypingText';
 import Navbar from '../components/Navbar';
 
 const destinations = [
-  {
-    slug: "cyprus",
-    country: "Cyprus",
-    city: "Ayia Napa",
-    price3: "$493",
-    badge: "Bestseller",
-    // Обращаемся к папке public/country/
-    image: "/country/cyprus.jpg" 
-  },
-  {
-    slug: "bulgaria",
-    country: "Bulgaria",
-    city: "Sunny Beach",
-    price3: "$289",
-    badge: "Popular",
-    image: "/country/sunny beach bulgaria.png"
-  },
-  {
-    slug: "montenegro",
-    country: "Montenegro",
-    city: "Budva",
-    price3: "$391",
-    badge: "Trending",
-    image: "/country/budva montenegro.png"
-  },
-  {
-    slug: "spain",
-    country: "Spain",
-    city: "Magaluf",
-    price3: "$413",
-    badge: "Bestseller",
-    image: "/country/magaluf spain.png"
-  },
-  {
-    slug: "greece",
-    country: "Greece",
-    city: "Malia",
-    price3: "$530",
-    badge: "Popular",
-    image: "/country/greece.jpg"
-  },
+  // --- АКТИВНЫЕ ТУРЫ ---
   {
     slug: "budapest",
     country: "Hungary",
     city: "Budapest",
-    price3: "$431",
+    price3: "€640",
     badge: "Trending",
-    image: "/country/budapest.png"
-  },
-  {
-    slug: "amsterdam",
-    country: "Netherlands",
-    city: "Amsterdam",
-    price3: "$538",
-    badge: "Bestseller",
-    image: "/country/amsterdam.jpg"
-  },
-  {
-    slug: "albania",
-    country: "Albania",
-    city: "Saranda",
-    price3: "$615",
-    badge: "Popular",
-    image: "/country/saranda albania.png"
+    image: "/country/budapest.png",
+    isActive: true
   },
   {
     slug: "prague",
     country: "Czechia",
     city: "Prague",
-    price3: "$543",
-    badge: "Trending",
-    // Обрати внимание на заглавную P, как у тебя в названии файла
-    image: "/country/Prague.png" 
+    price3: "€700",
+    badge: "Popular",
+    image: "/country/Prague.png",
+    isActive: true
+  },
+  {
+    slug: "amsterdam",
+    country: "Netherlands",
+    city: "Amsterdam",
+    price3: "€845",
+    badge: "Bestseller",
+    image: "/country/amsterdam.jpg",
+    isActive: true
+  },
+  {
+    slug: "belgrade",
+    country: "Serbia",
+    city: "Belgrade",
+    price3: "€915",
+    badge: "Visa-free",
+    image: "/country/belgrade.jpg", // Если сохранил как .png, поменяй здесь
+    isActive: true
+  },
+  
+  // --- НЕАКТИВНЫЕ ТУРЫ (SOON) ---\
+  {
+    slug: "cyprus",
+    country: "Cyprus",
+    city: "Ayia Napa",
+    price3: "€675",
+    badge: "Soon",
+    image: "/country/cyprus.jpg",
+    isActive: false
+  },
+  {
+    slug: "bulgaria",
+    country: "Bulgaria",
+    city: "Sunny Beach",
+    price3: "€455",
+    badge: "Soon",
+    image: "/country/sunny beach bulgaria.png",
+    isActive: false
+  },
+  {
+    slug: "montenegro",
+    country: "Montenegro",
+    city: "Budva",
+    price3: "€645",
+    badge: "Soon",
+    image: "/country/budva montenegro.png",
+    isActive: false
+  },
+  {
+    slug: "spain",
+    country: "Spain",
+    city: "Magaluf",
+    price3: "€745",
+    badge: "Soon",
+    image: "/country/magaluf spain.png",
+    isActive: false
+  },
+  {
+    slug: "greece",
+    country: "Greece",
+    city: "Malia",
+    price3: "€735",
+    badge: "Soon",
+    image: "/country/greece.jpg",
+    isActive: false
+  },
+  {
+    slug: "albania",
+    country: "Albania",
+    city: "Saranda",
+    price3: "€1,115",
+    badge: "Soon",
+    image: "/country/saranda albania.png",
+    isActive: false
   }
 ];
 
@@ -132,46 +151,71 @@ export default function Home() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {destinations.map((tour, index) => (
-            <Link 
-              href={`/${tour.slug}`} 
-              key={index} 
-              className="group relative block h-[400px] rounded-[2rem] overflow-hidden shadow-sm hover:shadow-2xl hover:shadow-slate-200 transition-all duration-500 bg-white"
-            >
+          {destinations.map((tour, index) => {
+            const CardInner = (
               <div className="absolute inset-0 p-2">
+                {/* Убрали grayscale и opacity, вернули сочные цвета */}
                 <div className="relative w-full h-full rounded-[1.5rem] overflow-hidden">
                   <img 
                     src={tour.image} 
                     alt={tour.country} 
-                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+                    className={`absolute inset-0 w-full h-full object-cover ${tour.isActive ? 'group-hover:scale-110 transition-transform duration-700' : ''}`} 
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent"></div>
+                  {/* Слегка затемняем фон у неактивных, чтобы белый текст читался */}
+                  <div className={`absolute inset-0 bg-gradient-to-t ${tour.isActive ? 'from-slate-900/90 via-slate-900/30' : 'from-slate-900/90 via-slate-900/50 bg-black/20'} to-transparent z-10`}></div>
                   
-                  <div className="absolute top-4 left-4 bg-white/20 backdrop-blur-md border border-white/30 text-white px-4 py-1.5 rounded-full text-xs font-bold shadow-sm">
-                    {tour.badge}
+                  {/* СТЕКЛЯННЫЙ ЗАМОК ДЛЯ НЕАКТИВНЫХ ТУРОВ */}
+                  {!tour.isActive && (
+                    <div className="absolute inset-0 flex items-center justify-center z-20">
+                      <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-full p-4 shadow-2xl flex flex-col items-center justify-center">
+                        <svg className="w-8 h-8 text-white opacity-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                        </svg>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Бейдж */}
+                  <div className={`absolute top-4 left-4 px-4 py-1.5 rounded-full text-xs font-bold shadow-sm backdrop-blur-md border z-20 ${
+                    tour.isActive 
+                      ? 'bg-white/20 border-white/30 text-white' 
+                      : 'bg-black/40 border-white/20 text-white/90 uppercase tracking-widest'
+                  }`}>
+                    {tour.isActive ? tour.badge : 'Soon'}
                   </div>
 
-                  <div className="absolute bottom-0 left-0 right-0 p-6 flex justify-between items-end">
+                  <div className="absolute bottom-0 left-0 right-0 p-6 flex justify-between items-end z-20">
                     <div className="text-white">
                       <h3 className="text-3xl font-extrabold mb-1 tracking-tight">{tour.country}</h3>
                       <p className="flex items-center text-sm font-medium text-white/80">
-                        <svg className="w-4 h-4 mr-1 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                        </svg>
+                        <svg className="w-4 h-4 mr-1 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                         {tour.city}
                       </p>
                     </div>
-                    
                     <div className="text-right text-white">
-                      <p className="text-xs font-medium text-white/70 mb-0.5">From</p>
+                      <p className="text-xs font-medium opacity-70 mb-0.5">From</p>
                       <p className="text-2xl font-bold">{tour.price3}</p>
                     </div>
                   </div>
                 </div>
               </div>
-            </Link>
-          ))}
+            );
+
+            if (tour.isActive) {
+              return (
+                <Link href={`/${tour.slug}`} key={index} className="group relative block h-[400px] rounded-[2rem] overflow-hidden shadow-sm hover:shadow-2xl hover:shadow-slate-200 transition-all duration-500 bg-white">
+                  {CardInner}
+                </Link>
+              );
+            } 
+            else {
+              return (
+                <div key={index} className="group relative block h-[400px] rounded-[2rem] overflow-hidden bg-slate-50/50 cursor-not-allowed">
+                  {CardInner}
+                </div>
+              );
+            }
+          })}
         </div>
       </section>
 
