@@ -76,6 +76,7 @@ export default function AboutPage() {
       />
 
      <Navbar alwaysDarkText={true} />
+     
 
       {/* ФОНОВЫЕ ЭФФЕКТЫ (Apple Glassmorphism Blur) */}
       <div className="fixed top-0 left-0 right-0 h-[50vh] bg-gradient-to-b from-slate-200/50 to-transparent -z-10"></div>
@@ -137,20 +138,21 @@ export default function AboutPage() {
           <section className="bg-slate-900 text-white p-8 md:p-12 rounded-[2.5rem] shadow-xl">
             <h2 className="text-3xl font-extrabold mb-6 tracking-tight">Where we take you</h2>
             <p className="text-white/80 leading-relaxed text-lg font-medium mb-6">
-              3- and 7-day trips to:
+              3- and 7-day trips to Cyprus, Bulgaria, Montenegro, Spain, Greece, Hungary, Netherlands, Albania and Czech Republic.
             </p>
             <div className="flex flex-wrap gap-3">
-              {/* Внутренние ссылки (помогают страницам стран расти в Google) */}
+              {/* Внутренние ссылки */}
               {[
                 { name: "Cyprus", slug: "cyprus" },
                 { name: "Bulgaria", slug: "bulgaria" },
                 { name: "Montenegro", slug: "montenegro" },
                 { name: "Spain", slug: "spain" },
                 { name: "Greece", slug: "greece" },
-                { name: "Budapest", slug: "budapest" },
-                { name: "Amsterdam", slug: "amsterdam" },
+                { name: "Hungary", slug: "budapest" },
+                { name: "Netherlands", slug: "amsterdam" },
                 { name: "Albania", slug: "albania" },
-                { name: "Prague", slug: "prague" }
+                { name: "Czech Republic", slug: "prague" },
+                { name: "Serbia", slug: "Belgrade" },
               ].map((dest) => (
                 <Link 
                   key={dest.slug} 

@@ -1,7 +1,13 @@
 import React from 'react';
 import Link from 'next/link';
+import { Metadata } from 'next';
 import TypingText from '../components/TypingText';
 import Navbar from '../components/Navbar';
+
+export const metadata: Metadata = {
+  title: "WYLD MILE | Independent Travel Atelier",
+  description: "Hand-crafted routes. No mass tourism, just your rhythm and wild places. Book your perfect 3 or 7-day travel itinerary.",
+};
 
 const destinations = [
   // --- АКТИВНЫЕ ТУРЫ ---
@@ -38,11 +44,11 @@ const destinations = [
     city: "Belgrade",
     price3: "€915",
     badge: "Visa-free",
-    image: "/country/belgrade.jpg", // Если сохранил как .png, поменяй здесь
+    image: "/country/belgrade.jpg",
     isActive: true
   },
   
-  // --- НЕАКТИВНЫЕ ТУРЫ (SOON) ---\
+  // --- НЕАКТИВНЫЕ ТУРЫ (SOON) ---
   {
     slug: "cyprus",
     country: "Cyprus",
@@ -154,14 +160,12 @@ export default function Home() {
           {destinations.map((tour, index) => {
             const CardInner = (
               <div className="absolute inset-0 p-2">
-                {/* Убрали grayscale и opacity, вернули сочные цвета */}
                 <div className="relative w-full h-full rounded-[1.5rem] overflow-hidden">
                   <img 
                     src={tour.image} 
                     alt={tour.country} 
                     className={`absolute inset-0 w-full h-full object-cover ${tour.isActive ? 'group-hover:scale-110 transition-transform duration-700' : ''}`} 
                   />
-                  {/* Слегка затемняем фон у неактивных, чтобы белый текст читался */}
                   <div className={`absolute inset-0 bg-gradient-to-t ${tour.isActive ? 'from-slate-900/90 via-slate-900/30' : 'from-slate-900/90 via-slate-900/50 bg-black/20'} to-transparent z-10`}></div>
                   
                   {/* СТЕКЛЯННЫЙ ЗАМОК ДЛЯ НЕАКТИВНЫХ ТУРОВ */}
@@ -283,13 +287,41 @@ export default function Home() {
               </a>
             </div>
 
-            <div className="mt-16 pt-8 border-t border-slate-200/50 flex flex-col md:flex-row justify-between items-center text-slate-500 text-sm font-medium">
-              <div className="flex items-center space-x-2 mb-4 md:mb-0">
-                <img src="/logo.png" alt="WYLD MILE" className="h-6 w-auto grayscale opacity-80" />
-                <span>—</span>
-                <span>Independent Travel Atelier</span>
+            <div className="mt-16 pt-8 border-t border-slate-200/50 flex flex-col gap-8 text-slate-500 text-sm font-medium">
+              
+              {/* Юридическая информация (Legal Info) */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs leading-relaxed text-slate-500/80">
+                <div>
+                  <p className="font-bold text-slate-700 mb-1">WYLD MILE LLC <span className="font-normal text-slate-500/80">· brand name: WYLD MILE</span></p>
+                  <p>Tax ID: 08337252</p>
+                  <p>Tax registration address: Arabkir, Yerevan 0012, Armenia</p>
+                  <p>Office address: same as the tax registration address (no separate office)</p>
+                  <p>Management bodies: director: Arman Petrosyan</p>
+                </div>
+                <div className="md:text-right flex flex-col md:items-end justify-end">
+                  <p>Bank details: [BANK NAME], account: 262*********003</p>
+                  <p>Phone: +374 96 252505 · Email: contact@wyldmile.com</p>
+                </div>
               </div>
-              <p>© {new Date().getFullYear()} All rights reserved.</p>
+
+              {/* Копирайт, Privacy Policy и Дата обновления */}
+              <div className="flex flex-col md:flex-row justify-between items-center pt-6 border-t border-slate-200/30 gap-4">
+                <div className="flex items-center space-x-2">
+                  <img src="/logo.png" alt="WYLD MILE" className="h-6 w-auto grayscale opacity-80" />
+                  <span>—</span>
+                  <span>Independent Travel Atelier</span>
+                </div>
+                
+                {/* Мелкие неважные ссылки (серого цвета) */}
+                <div className="flex items-center space-x-4 text-xs text-slate-400">
+                  <Link href="/privacy" className="hover:text-slate-600 transition-colors">Privacy Policy</Link>
+                  <span>·</span>
+                  <span>Last updated: 20.10.2026</span>
+                </div>
+
+                <p className="text-xs text-slate-500/80">© {new Date().getFullYear()} WYLD MILE. All rights reserved.</p>
+              </div>
+
             </div>
           </div>
         </div>
